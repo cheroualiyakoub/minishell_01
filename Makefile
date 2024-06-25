@@ -1,6 +1,6 @@
 # Compiler and flags
 CC = cc -g
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 # Name of the library
 NAME = minishell
@@ -9,7 +9,7 @@ SRC_DIR = src
 SRCS = $(SRC_DIR)/main.c
 
 PAR_DIR = parsing
-PAR_SRC = $(PAR_DIR)/token.c $(PAR_DIR)/create_list.c $(PAR_DIR)/expand.c
+PAR_SRC = $(PAR_DIR)/token.c $(PAR_DIR)/create_list.c $(PAR_DIR)/expand.c $(PAR_DIR)/token_utilis.c 
 
 TOOL_DIR = tools
 TOOL_SRC = $(TOOL_DIR)/utils.c $(TOOL_DIR)/free_memory.c $(TOOL_DIR)/allocate_memory.c

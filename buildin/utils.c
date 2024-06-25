@@ -6,7 +6,7 @@
 /*   By: ycheroua <ycheroua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:51:29 by ycheroua          #+#    #+#             */
-/*   Updated: 2024/06/24 22:24:01 by ycheroua         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:29:03 by ycheroua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	check_buildings(char **argv)
 	}
 	return (0);
 }
+
 int	run_buildings(t_obj *obj, char **argv)
 {
 	t_bulding	buldings[7];

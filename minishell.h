@@ -6,7 +6,7 @@
 /*   By: ycheroua <ycheroua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:03:55 by ashirzad          #+#    #+#             */
-/*   Updated: 2024/06/24 22:46:58 by ycheroua         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:49:11 by ycheroua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include <readline/readline.h>
-#include <readline/history.h>
+# include <readline/history.h>
 # include <sys/wait.h>
 # include <string.h>
 
@@ -41,17 +41,17 @@
 
 typedef struct s_token
 {
-	char	*str;
-	int		type;
-	struct	s_token *next;
-	struct	s_token	*prev;
+	char			*str;
+	int				type;
+	struct s_token	*next;
+	struct s_token	*prev;
 }	t_token;
 
 typedef struct s_lexer
 {
-	char	*str;
-	int		i;
-	struct	s_lexer *next;
+	char			*str;
+	int				i;
+	struct s_lexer	*next;
 }	t_lexer;
 
 typedef struct t_cmd
@@ -64,9 +64,9 @@ typedef struct t_cmd
 
 typedef struct s_env
 {
-	char	*value;
-	struct	s_env *next;
-	struct	s_env *prev;
+	char			*value;
+	struct s_env	*next;
+	struct s_env	*prev;
 }	t_env;
 
 typedef struct s_tool
@@ -74,7 +74,6 @@ typedef struct s_tool
 	char	*pwd;
 	char	*oldpwd;
 }	t_tool;
-
 
 typedef struct s_obj
 {
@@ -102,6 +101,7 @@ int		quotes(char *str);
 t_token	*tokenize(char **str);
 char	*get_token(char **str);
 void	token_type(t_token **token);
+char	set_char(char **str, char c);
 
 // expand the tokens
 void	expand(t_obj *obj);
@@ -128,8 +128,8 @@ int		check_equal(char *str);
 int		alloc_mem(char *str);
 void	append_env(t_env **token, char *str);
 void	append_token(t_token **token, char *str);
-void	append_lexer(t_lexer **lexer , char *str, int i);
-void	append_argv(t_cmd **cmd , t_lexer *lexer , char **argv);
+void	append_lexer(t_lexer **lexer, char *str, int i);
+void	append_argv(t_cmd **cmd, t_lexer *lexer, char **argv);
 
 // all function to free dynamic memory
 void	free_argv(char **argv);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashirzad <ashirzad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ycheroua <ycheroua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:47:37 by ashirzad          #+#    #+#             */
-/*   Updated: 2024/06/23 11:48:37 by ashirzad         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:37:56 by ycheroua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,17 @@ void	ft_redirection(t_lexer **lexer, t_token **token)
 	}
 }
 
-t_cmd	*create_list(t_token *token)
+t_cmd	*creat_list_loop(t_token *token, t_cmd *cmd, \
+			t_lexer *lexer, char **argv)
 {
-	t_cmd	*cmd;
-	t_lexer	*lexer;
-	char	**argv;
-	int		i;
+	int	i;
 
-	cmd = NULL;
 	while (token)
 	{
 		lexer = NULL;
 		argv = (char **)malloc(sizeof(char *) * (argv_len(token) + 1));
+		if (!argv)
+			return (NULL);
 		argv[argv_len(token)] = NULL;
 		i = 0;
 		while (token && token->type != PIPE)
@@ -66,4 +65,16 @@ t_cmd	*create_list(t_token *token)
 			token = token->next;
 	}
 	return (cmd);
+}
+
+t_cmd	*create_list(t_token *token)
+{
+	t_cmd	*cmd;
+	t_lexer	*lexer;
+	char	**argv;
+
+	cmd = NULL;
+	lexer = NULL;
+	argv = NULL;
+	return (creat_list_loop(token, cmd, lexer, argv));
 }

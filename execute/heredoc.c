@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashirzad <ashirzad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ycheroua <ycheroua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 11:23:59 by ashirzad          #+#    #+#             */
-/*   Updated: 2024/06/24 14:34:07 by ashirzad         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:20:33 by ycheroua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,12 @@ char	*ft_run(t_obj *obj, char *stop, int n)
 	return (file);
 }
 
-int	ft_heredoc(t_obj *obj)
+void	ft_herdoc_execution(t_obj *obj, t_cmd *cmd_t, t_lexer *lexer)
 {
-	t_cmd	*cmd_t;
-	t_lexer	*lexer;
 	int		i;
 	char	*name;
 
 	i = 0;
-	cmd_t = obj->cmd;
-	lexer = NULL;
-	if (is_heredoc(cmd_t) != 1)
-		return (SUCCESS);
 	while (cmd_t)
 	{
 		name = NULL;
@@ -109,5 +103,19 @@ int	ft_heredoc(t_obj *obj)
 		}
 		cmd_t = cmd_t->next;
 	}
+}
+
+int	ft_heredoc(t_obj *obj)
+{
+	t_cmd	*cmd_t;
+	t_lexer	*lexer;
+	int		i;
+
+	i = 0;
+	cmd_t = obj->cmd;
+	lexer = NULL;
+	if (is_heredoc(cmd_t) != 1)
+		return (SUCCESS);
+	ft_herdoc_execution(obj, cmd_t, lexer);
 	return (SUCCESS);
 }

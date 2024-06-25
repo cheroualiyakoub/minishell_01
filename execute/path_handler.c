@@ -6,13 +6,13 @@
 /*   By: ycheroua <ycheroua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:14:50 by ycheroua          #+#    #+#             */
-/*   Updated: 2024/06/17 15:19:54 by ycheroua         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:26:46 by ycheroua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*check_full_path(char *path_elemt, char *cmd)
+char	*pp_check_full_path(char *path_elemt, char *cmd)
 {
 	int		path_len;
 	int		cmd_len;
@@ -31,21 +31,41 @@ char	*check_full_path(char *path_elemt, char *cmd)
 	return (full_path);
 }
 
-char	*get_full_path(char **env_path, char *cmd)
+char	*pp_path_cheker(char **path_array, char *cmd)
 {
 	int		i;
-	char	*full_path;
+	char	*cmd_path;
 
-	if (!env_path || !cmd)
-		return (NULL);
 	i = 0;
-	while (env_path[i])
+	cmd_path = NULL;
+	while (path_array[i])
 	{
-		full_path = check_full_path(env_path[i], cmd);
-		if (access(full_path, X_OK) == 0)
-			return (full_path);
+		cmd_path = pp_check_full_path(path_array[i], cmd);
+		if (access(cmd_path, X_OK) == 0)
+			return (cmd_path);
 		i++;
-		free (full_path);
+		free (cmd_path);
 	}
 	return (NULL);
+}
+
+char	*pp_get_path_env(t_obj *obj, char *cmd)
+{
+	t_env	*env_temp;
+	char	**path_array;
+
+	env_temp = obj->env;
+	path_array = NULL;
+	while (env_temp && !path_array)
+	{
+		if (ft_strncmp(env_temp->value, "PATH=", 5) == 0)
+			path_array = ft_split_simple(env_temp->value + 5, ':');
+		env_temp = env_temp->next;
+	}
+	if (!path_array)
+	{
+		perror("couldns find path variables");
+		exit (determine_exit_code(obj, Q_ERROR));
+	}
+	return (pp_path_cheker(path_array, cmd));
 }

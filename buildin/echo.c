@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashirzad <ashirzad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ycheroua <ycheroua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:10:13 by ashirzad          #+#    #+#             */
-/*   Updated: 2024/06/23 12:00:47 by ashirzad         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:28:43 by ycheroua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	ft_isall_char(char **argv, char c)
+{
+	int		i;
+	int		j;
+
+	i = 1;
+	j = 1;
+	if (argv[i][0] != '-')
+		return (0);
+	while (argv[i][j])
+	{
+		if (argv[i][j] != c)
+			return (0);
+		j++;
+	}
+	return (1);
+}
 
 char	*ft_cat(char **argv)
 {
@@ -21,7 +39,7 @@ char	*ft_cat(char **argv)
 	i = 1;
 	new_line = 0;
 	str = NULL;
-	if (argv[i] && ft_strcmp(argv[i], "-n") == 0)
+	if (argv[i] && ft_isall_char(argv, 'n'))
 	{
 		new_line = !new_line;
 		i++;

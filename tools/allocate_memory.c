@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   append.c                                           :+:      :+:    :+:   */
+/*   allocate_memory.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashirzad <ashirzad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ycheroua <ycheroua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:25:28 by ashirzad          #+#    #+#             */
-/*   Updated: 2024/06/23 13:03:53 by ashirzad         ###   ########.fr       */
+/*   Updated: 2024/06/25 20:25:17 by ycheroua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	append_env(t_env **env, char *str)
 	if (!tmp_env)
 	{
 		(*env) = malloc(sizeof(t_env));
+		if (!*env)
+			return ;
 		(*env)->value = ft_strdup(str);
 		(*env)->prev = NULL;
 		(*env)->next = NULL;
@@ -48,6 +50,8 @@ void	append_env(t_env **env, char *str)
 		while (tmp_env->next)
 			tmp_env = tmp_env->next;
 		tmp_env->next = malloc(sizeof(t_env));
+		if (!tmp_env->next)
+			return ;
 		tmp_env->next->value = ft_strdup(str);
 		tmp_env->next->prev = tmp_env;
 		tmp_env->next->next = NULL;
@@ -62,6 +66,8 @@ void	append_token(t_token **token, char *str)
 	if (!tmp_token)
 	{
 		(*token) = malloc(sizeof(t_token));
+		if (!token)
+			return ;
 		(*token)->str = ft_strdup(str);
 		(*token)->next = NULL;
 		(*token)->prev = NULL;
@@ -71,6 +77,8 @@ void	append_token(t_token **token, char *str)
 		while (tmp_token->next)
 			tmp_token = tmp_token->next;
 		tmp_token->next = malloc(sizeof(t_token));
+		if (!tmp_token->next)
+			return ;
 		tmp_token->next->prev = tmp_token;
 		tmp_token->next->str = ft_strdup(str);
 		tmp_token->next->next = NULL;
@@ -85,6 +93,8 @@ void	append_argv(t_cmd **cmd, t_lexer *lexer, char **argv)
 	if (!tmp_cmd)
 	{
 		(*cmd) = malloc(sizeof(t_cmd));
+		if (!*cmd)
+			return ;
 		(*cmd)->argv = argv;
 		(*cmd)->lexer = lexer;
 		(*cmd)->next = NULL;
@@ -95,6 +105,8 @@ void	append_argv(t_cmd **cmd, t_lexer *lexer, char **argv)
 		while (tmp_cmd->next)
 			tmp_cmd = tmp_cmd->next;
 		tmp_cmd->next = malloc(sizeof(t_cmd));
+		if (!tmp_cmd->next)
+			return ;
 		tmp_cmd->next->argv = argv;
 		tmp_cmd->next->lexer = lexer;
 		tmp_cmd->next->next = NULL;
@@ -110,6 +122,8 @@ void	append_lexer(t_lexer **lexer, char *str, int i)
 	if (!tmp_cmd)
 	{
 		(*lexer) = malloc(sizeof(t_lexer));
+		if (!*lexer)
+			return ;
 		(*lexer)->str = ft_strdup(str);
 		(*lexer)->i = i;
 		(*lexer)->next = NULL;
@@ -119,6 +133,8 @@ void	append_lexer(t_lexer **lexer, char *str, int i)
 		while (tmp_cmd->next)
 			tmp_cmd = tmp_cmd->next;
 		tmp_cmd->next = malloc(sizeof(t_lexer));
+		if (!tmp_cmd->next)
+			return ;
 		tmp_cmd->next->str = ft_strdup(str);
 		tmp_cmd->next->i = i;
 		tmp_cmd->next->next = NULL;

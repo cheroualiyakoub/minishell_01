@@ -6,7 +6,7 @@
 /*   By: ycheroua <ycheroua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:51:00 by ashirzad          #+#    #+#             */
-/*   Updated: 2024/06/24 22:24:08 by ycheroua         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:28:52 by ycheroua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	free_tools(t_obj *obj)
 int	ft_exit(char **argv, t_obj *obj)
 {
 	(void)argv;
-
 	if (argv[1] != NULL)
 	{
 		printf("exit: too many args.\n");

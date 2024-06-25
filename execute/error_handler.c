@@ -6,7 +6,7 @@
 /*   By: ycheroua <ycheroua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 02:27:28 by ycheroua          #+#    #+#             */
-/*   Updated: 2024/06/24 19:03:41 by ycheroua         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:29:08 by ycheroua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	dup2_error(t_obj *obj, int dup)
 		exit(determine_exit_code(obj, Q_ERROR));
 	}
 }
-
 
 int	dup_error(t_obj *obj, int dup)
 {

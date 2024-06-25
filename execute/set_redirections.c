@@ -6,7 +6,7 @@
 /*   By: ycheroua <ycheroua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 16:13:39 by ycheroua          #+#    #+#             */
-/*   Updated: 2024/06/24 18:29:52 by ycheroua         ###   ########.fr       */
+/*   Updated: 2024/06/25 20:08:05 by ycheroua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	set_redirections(t_cmd *cmd)
 	red_temp = cmd->lexer;
 	while (red_temp)
 	{
-		if (red_temp->i == INPUT)
+		if (red_temp->i == INPUT || red_temp->i == HEREDOC)
 		{
 			if (set_red_input(red_temp) == EXIT_FAILURE)
 				return (Q_ERROR);
@@ -91,11 +91,6 @@ int	set_redirections(t_cmd *cmd)
 		else if (red_temp->i == APPEND)
 		{
 			if (set_red_append(red_temp) == EXIT_FAILURE)
-				return (Q_ERROR);
-		}
-		else if (red_temp->i == HEREDOC)
-		{
-			if (set_red_input(red_temp) == EXIT_FAILURE)
 				return (Q_ERROR);
 		}
 		red_temp = red_temp->next;

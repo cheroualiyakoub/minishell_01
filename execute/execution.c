@@ -6,7 +6,7 @@
 /*   By: ycheroua <ycheroua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 20:28:40 by ycheroua          #+#    #+#             */
-/*   Updated: 2024/06/24 22:48:51 by ycheroua         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:29:36 by ycheroua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	parent_process(t_obj *obj, t_cmd *curr_cmd, int fd_pipe[2])
 	}
 }
 
-
 void	execution_loop(t_obj *obj, int main_fd_in, int main_fd_out, char **env)
 {
 	t_cmd	*curr_cmd;
@@ -94,7 +93,6 @@ void	execution_loop(t_obj *obj, int main_fd_in, int main_fd_out, char **env)
 	}
 }
 
-
 int	executor(t_obj *obj, char **env)
 {
 	int		status;
@@ -113,7 +111,7 @@ int	executor(t_obj *obj, char **env)
 			return (determine_exit_code(obj, Q_ERROR), Q_ERROR);
 		run_buildings(obj, curr_cmd->argv);
 	}
-	else
+	else if (curr_cmd && curr_cmd->argv[0])
 	{
 		execution_loop(obj, std_in, std_out, env);
 		ft_wait_all(obj, &status);

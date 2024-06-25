@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashirzad <ashirzad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ycheroua <ycheroua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:14:05 by ashirzad          #+#    #+#             */
-/*   Updated: 2024/06/24 14:54:17 by ashirzad         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:53:13 by ycheroua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,13 @@ char	*get_token(char **str)
 
 	i = 0;
 	c = 0;
-	line = NULL;
 	line = (char *)malloc(alloc_mem(*str) + 1);
+	if (!line)
+		return (NULL);
 	while (*(*str))
 	{
 		if (*(*str) == '\"' || *(*str) == '\'')
-		{
-			if (*(*str) == c)
-				c = 0;
-			else
-				c = *(*str);
-		}
+			c = set_char(str, c);
 		line[i] = *(*str);
 		i++;
 		if (check_sep(str, c) != 0)
